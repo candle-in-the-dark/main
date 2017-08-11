@@ -18,6 +18,7 @@
   "homepage": "https://github.com/candle-in-the-dark/main#readme",
   "dependencies": {
     "bcrypt-as-promised": "^1.1.0",
+    "bcrypt-cli": "^1.1.0",
     "body-parser": "^1.17.2",
     "boom": "^5.2.0",
     "cookie-parser": "^1.4.3",
