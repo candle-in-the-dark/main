@@ -1,0 +1,17 @@
+body {
+  background-color: black;
+}
+
+* {
+  color: white;
+}
+
+#title {
+  color: silver;
+  /*color: transparent; I'd liek to get theis working*/
+  text-shadow: rgba(0, 0, 0, 1) 0px 0px 5px;
+}
+
+.btnpad {
+  margin: 10px;
+}
