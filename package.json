@@ -1,0 +1,31 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/candle-in-the-dark/main.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/candle-in-the-dark/main/issues"
+  },
+  "homepage": "https://github.com/candle-in-the-dark/main#readme",
+  "dependencies": {
+    "bcrypt-as-promised": "^1.1.0",
+    "body-parser": "^1.17.2",
+    "boom": "^5.2.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.4",
+    "humps": "^2.0.1",
+    "jsonwebtoken": "^7.4.2",
+    "knex": "^0.13.0",
+    "morgan": "^1.8.2",
+    "pg": "^7.1.0"
+  }
+}
