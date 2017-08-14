@@ -2,23 +2,30 @@
 <html>
 <head>
     <title>MAZE!</title>
-    <meta charset="utf-8">
     <!-- <link rel="stylesheet" href="./css/style.css" type="text/css"> -->
-    <link rel="stylesheet" href="./css/maze.css" type="text/css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css" type="text/css">
     <script src="./js/common.js"></script>
     <script src="./js/maze.js"></script>
 </head>
 <body>
 
-<header class="main-header">
-    <p class="center white">Use arrow keys to move</p>
-</header>
+  <footer class="main-header row">
+    <div class='col l4 offset-l2'>
+      <p class="center">Use arrow keys to move</p>
+    </div>
+    <div class='col l4'>
+      <p class='center'>Elapsed Time: </p>
+    </div>
+  </footer>
 
-<div class="main-wrapper">
+  <div class="main-wrapper container">
     <canvas id="demo" width="768" height="768"></canvas>
-
-
-</div><!-- main wrapper -->
+  </div><!-- main wrapper -->
 
 </body>
 </html>
