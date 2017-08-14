@@ -9,18 +9,30 @@ const knex = require('../knex');
 const router = express.Router();
 
 router.post('/users', (req, res, next) => {
-  console.log('hello')
-  const email = req.body.email;
-  console.log(req.body);
-  knex('users').where('email', email).first()
+  console.log('hello post!')
+  knex('users').where('email', req.body.email).first()
     .then((row) => {
       if (row) {
-        return next(boom.create(200, 'Email is already registerd to a user.'))
+        return next(boom.create(200, 'Email is already registered to a user.'))
       }
-      bcrypt.hashPassword(req.body.password, 12)
+      bcrypt.hash(req.body.password, 12)
         .then((password) => {
-
-        }
+          const newUser = {'email': req.body.email, 'username': req.body.username, 'hashed_password': password, 'maps_completed': []};
+          return knex('users').insert(newUser, '*')
+        })
+        .then((result) => {
+          result = result[0];
+          delete result.password;
+          console.log(result)
+          res.send(result);
+        })
+        .catch((err) => {
+          return next(err);
+        })
     })
-  const newUser = {'email': req.body.email, 'username': req.body.username}
+    .catch((err) => {
+      return next(err);
+    })
 })
+
+module.exports = router;
