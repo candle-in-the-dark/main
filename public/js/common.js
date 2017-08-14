@@ -117,9 +117,8 @@ Game.render = function () {};
 window.onload = function () {
     var context = document.getElementById('demo').getContext('2d');
 
-    $.getJSON('/maps/1', function(err,data){
-      if(err) return;
-      map.layers = JSON.parse(result.map_data);
+    $.getJSON('/maps/1', function(data){
+      map.layers = data.map_data;
       Game.run(context, map);
     })
 };

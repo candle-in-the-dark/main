@@ -20,13 +20,13 @@ app.use(express.static(path.join('public')));
 // const quests = require('./routes/quests');
 const token = require('./routes/token');
 const users = require('./routes/users');
-// const maps = require('./routes/maps');
+const maps = require('./routes/maps');
 //
 // app.use(scores);
 // app.use(quests);
 app.use(token);
 app.use(users);
-// app.use(maps);
+app.use(maps);
 
 app.use((req, res) => {
   res.sendStatus(404);

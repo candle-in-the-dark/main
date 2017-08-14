@@ -13,7 +13,6 @@ router.get('/maps/:id', (req, res, next) => {
     .where('id', req.params.id)
     .first()
     .then((map) => {
-      console.log(map)
       res.send(map)
     })
     .catch((err) => next(err));
@@ -27,3 +26,5 @@ router.get('/maps', (req, res, next) => {
     })
     .catch((err) => next(err));
 })
+
+module.exports = router;
