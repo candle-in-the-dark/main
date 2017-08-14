@@ -25,7 +25,7 @@ const users = require('./routes/users');
 // app.use(scores);
 // app.use(quests);
 app.use(token);
-// app.use(users);
+app.use(users);
 // app.use(maps);
 
 app.use((req, res) => {

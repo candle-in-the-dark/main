@@ -12,7 +12,7 @@ $('#submit').on('click', () => {
       type: 'POST',
       url: '/users'
     };
-    console.log()
+    console.log('making the call')
     $.ajax(options)
       .then(() => {
         Materialize.toast('Successfully logged in!', 1500);
