@@ -16,13 +16,13 @@ app.use(cookie());
 // enable static 'public' directory for serving html/css/js files to client
 app.use(express.static(path.join('public')));
 
-// const scores = require('./routes/scores');
+const scores = require('./routes/scores');
 // const quests = require('./routes/quests');
 const token = require('./routes/token');
 const users = require('./routes/users');
 const maps = require('./routes/maps');
 //
-// app.use(scores);
+app.use(scores);
 // app.use(quests);
 app.use(token);
 app.use(users);

@@ -17,3 +17,8 @@ head, body {
 .center{
     text-align: center;
 }
+
+#timer {
+  background-color: silver;
+  border-radius: 5px;
+}
