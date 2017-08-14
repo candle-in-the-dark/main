@@ -116,7 +116,8 @@ Game.render = function () {};
 
 window.onload = function () {
     var context = document.getElementById('demo').getContext('2d');
-    // var mapId = window query string
+    var mapId = window.location.search.slice(4)
+    console.log(mapId);
     // $.getJSON('maps/' + mapId, function(data){
     $.getJSON('/maps/1', function(data){
       map.layers = data.map_data;
