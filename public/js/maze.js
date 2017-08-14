@@ -68,7 +68,7 @@ Hero.prototype.move = function (delta, dirx, diry) {
     if(end && !this.complete){
       let endTime = Math.floor($('#timer').text().split(' ')[2]);
       submitScore(endTime);
-      // window.location.href = 'win.html';
+      window.location.href = 'win.html';
       this.complete = true;
     }
 };
