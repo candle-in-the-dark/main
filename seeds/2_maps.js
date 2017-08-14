@@ -1,13 +1,18 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('maps').del()
+    .then(() => {
+      return knex.raw(
+        "SELECT setval('maps_id_seq', 1, false);"
+      )
+    })
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
+      return knex('maps').insert([
         {
           id: 1,
-          map_data: [[
+          map_data: JSON.stringify([[
               3, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
               3, 1, 1, 1, 1, 3, 1, 1, 1, 3, 1, 3,
               3, 3, 3, 3, 1, 1, 1, 3, 1, 3, 1, 1,
@@ -46,10 +51,10 @@ exports.seed = function(knex, Promise) {
               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            ]]},
+            ]])},
         {
           id: 2,
-          map_data: [[
+          map_data: JSON.stringify([[
             3, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
             3, 1, 1, 1, 1, 3, 1, 1, 1, 3, 1, 3,
             3, 3, 3, 3, 1, 1, 1, 3, 1, 3, 1, 1,
@@ -88,8 +93,8 @@ exports.seed = function(knex, Promise) {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]]},
-        {id: 3, map_data: [[
+        ]])},
+        {id: 3, map_data: JSON.stringify([[
             3, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
             3, 1, 1, 1, 1, 3, 1, 1, 1, 3, 1, 3,
             3, 3, 3, 3, 1, 1, 1, 3, 1, 3, 1, 1,
@@ -128,7 +133,13 @@ exports.seed = function(knex, Promise) {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        ]]}
+        ]])}
       ]);
+
+    })
+    .then(() => {
+      return knex.raw(
+        "SELECT setval('maps_id_seq', (SELECT MAX(id) FROM maps));"
+      );
     });
 };
