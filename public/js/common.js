@@ -119,7 +119,7 @@ window.onload = function () {
 
     $.getJSON('/maps/1', function(err,data){
       if(err) return;
-      map.layers = result.map_data;
+      map.layers = JSON.parse(result.map_data);
       Game.run(context, map);
     })
 };
