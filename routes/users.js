@@ -9,11 +9,11 @@ const knex = require('../knex');
 const router = express.Router();
 
 router.post('/users', (req, res, next) => {
-  console.log('hello post!')
   knex('users').where('email', req.body.email).first()
     .then((row) => {
+      console.log(row)
       if (row) {
-        return next(boom.create(200, 'Email is already registered to a user.'))
+        return next(boom.create(200, 'Email is already registered to a user.'));
       }
       bcrypt.hash(req.body.password, 12)
         .then((password) => {

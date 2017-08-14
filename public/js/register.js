@@ -1,6 +1,5 @@
 $('#submit').on('click', () => {
   if (validForm()) {
-    console.log('valid form!')
     const email = $('#email').val();
     const password = $('#password').val();
     const username = $('#username').val();
@@ -12,7 +11,6 @@ $('#submit').on('click', () => {
       type: 'POST',
       url: '/users'
     };
-    console.log('making the call')
     $.ajax(options)
       .then(() => {
         Materialize.toast('Successfully logged in!', 1500);
