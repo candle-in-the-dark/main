@@ -13,13 +13,14 @@ $('#login').on('click', () => {
       .then(() => {
         Materialize.toast('Successfully logged in!', 1500);
         setTimeout(() => {
-          window.location.href = 'maze.html';
+          window.location.href = '../gamechoice.html';
         }, 1500);
       })
       .catch(($xhr) => {
         Materialize.toast($xhr.responseText, 3000);
       });
-})
+    }
+  });
 
 function validForm() {
   if (!$('#email').hasClass('valid')) {
