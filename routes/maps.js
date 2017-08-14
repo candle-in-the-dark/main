@@ -9,11 +9,11 @@ const knex = require('../knex');
 const router = express.Router();
 
 router.get('/maps/:id', (req, res, next) => {
-  console.log("hello map!")
   knex('maps')
     .where('id', req.params.id)
     .first()
     .then((map) => {
+      console.log(map)
       res.send(map)
     })
     .catch((err) => next(err));
