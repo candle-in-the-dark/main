@@ -1,0 +1,19 @@
+canvas {
+    background: #000;
+}
+head, body {
+  background: #000;
+}
+.white {
+  color: white;
+}
+
+.main-wrapper {
+    width: 768px;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin: 0 auto;
+}
+.center{
+    text-align: center;
+}
