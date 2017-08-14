@@ -17,7 +17,7 @@ $('#submit').on('click', () => {
       .then(() => {
         Materialize.toast('Successfully logged in!', 1500);
         setTimeout(() => {
-          // window.location.href = '../gamechoice.html';
+          window.location.href = '../gamechoice.html';
         }, 1500);
       })
       .catch(($xhr) => {
