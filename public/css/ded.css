@@ -1,0 +1,10 @@
+body {
+  background-image: url('../res/lossScreen.jpeg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+h1 {
+  background-color: white;
+  border-radius: 5px;
+}
