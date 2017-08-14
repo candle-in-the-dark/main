@@ -79,13 +79,13 @@ Keyboard.isDown = function (keyCode) {
 
 var Game = {};
 
-Game.run = function (context) {
+Game.run = function (context, map) {
     this.ctx = context;
     this._previousElapsed = 0;
 
     var p = this.load();
     Promise.all(p).then(function (loaded) {
-        this.init();
+        this.init(map);
         window.requestAnimationFrame(this.tick);
     }.bind(this));
 };
@@ -116,5 +116,10 @@ Game.render = function () {};
 
 window.onload = function () {
     var context = document.getElementById('demo').getContext('2d');
-    Game.run(context);
+
+    $.getJSON('/maps/1', function(err,data){
+      if(err) return;
+      map.layers = result.map_data;
+      Game.run(context, map);
+    })
 };
