@@ -1,5 +1,5 @@
-let numbOfMaps = 3;
 $('#guestPlay').on('click', () => {
-  let choice = Math.floor((Math.random()* 10) / numbOfMaps)
+  let numbOfMaps = 3;
+  let choice = Math.floor(Math.random() * numbOfMaps) + 1;
   window.location.href = `../maze.html?mapId=${choice}`
 })
