@@ -70,7 +70,7 @@ Hero.prototype.move = function (delta, dirx, diry) {
       let endTime = Math.floor($('#timer').text().split(' ')[2]);
       //send screen to dragon's riddle and commit score to storage to be inserted IFF dragon failsto kill hero
       submitScore(endTime);
-      // window.location.href = 'win.html';
+      window.location.href = 'win.html';
       this.complete = true;
     }
 };
@@ -80,15 +80,27 @@ const submitScore = function(endTime) {
   const mapId = window.location.search.split('?')[1].split('=')[1];
   const grabScore = {
     contentType: 'application/json',
-    data: JSON.stringify({ mapId }),
     dataType: 'json',
     type: 'GET',
-    url: '/scores'
+    url: `/scores/${mapId}`
   }
   $.ajax(grabScore)
     .then((result) => {
-      if (result) {
-        if (result.score < endTime) {
+      if (!result[0]) {
+        const options = {
+          contentType: 'application/json',
+          data: JSON.stringify({ endTime, mapId }),
+          dataType: 'json',
+          type: 'POST',
+          url: '/scores'
+        };
+        $.ajax(options)
+          .then(() => {})
+          .catch(($xhr) => {
+            Materialize.toast($xhr.responseText, 3000);
+          });
+      } else {
+        if (result[0].score < endTime) {
           const update = {
             contentType: 'application/json',
             data: JSON.stringify({ endTime, mapId }),
@@ -100,19 +112,6 @@ const submitScore = function(endTime) {
             .then(() => {})
             .catch((err) => {})
         }
-      } else {
-        const options = {
-          contentType: 'application/json',
-          data: JSON.stringify({ endTime, mapId }),
-          dataType: 'json',
-          type: 'POST',
-          url: '/scores'
-        };
-        $.ajax(options)
-        .then(() => {})
-        .catch(($xhr) => {
-          Materialize.toast($xhr.responseText, 3000);
-        });
       }
     })
     .catch((err) => {
