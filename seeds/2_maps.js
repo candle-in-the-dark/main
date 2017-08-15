@@ -139,8 +139,8 @@ exports.seed = function(knex, Promise) {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0
         ]]),
-        hero_x: 96,
-        hero_y: 16
+        hero_x: 224,
+        hero_y: 720
       }
       ]);
 
