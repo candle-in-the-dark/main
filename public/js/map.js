@@ -2,6 +2,8 @@ var map = {
     cols: 12,
     rows: 12,
     tsize: 64,
+    hero_x: 0,
+    hero_y: 0,
     layers: [],
     getTile: function (layer, col, row) {
         return this.layers[layer][row * map.cols + col];
