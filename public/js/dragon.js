@@ -1,7 +1,6 @@
 const questionDiv = $("#question");
 let heading = $("<h5>");
 const answer = $("#answer");
-let button = $("<input>").attr('type', 'radio')
 
 function getRiddle(){
 const url = 'https://opentdb.com/api.php?amount=10&category=20&difficulty=medium&type=multiple';
@@ -11,19 +10,28 @@ xhr.done(function(data){
     return;
   }
   let choice = Math.floor(Math.random() * 10);
-  console.log(data.results[choice]);
+
   let question = data.results[choice].question
   heading.text(question);
   questionDiv.append(heading);
-  let answers = []
-  for (let i = 0; i < data.results[choice].incorrect_answers.length; i++){
-    answers.push(data.results[choice].incorrect_answers[i])
+
+  let rightAnswer = data.results[choice].correct_answer
+  let answers = data.results[choice].incorrect_answers;
+  answers.push(rightAnswer);
+  while (answers.length > 0){
+    let picker = Math.floor(Math.random() * answers.length)
+    let button = $("<button>");
+    button.text(answers[picker]);
+    if (answers[picker] === rightAnswer){
+      button.addClass("correct");
+    }
+    answer.append(button)
+    answers.splice(picker, 1)
   }
-  answers.push(data.results[choice].correct_answer);
-  // console.log(answers);
-  for (i = 0; i < data.results[choice].incorrect_answers.length)
 });
 };
+
+
 
 window.onload = function() {
   getRiddle();
