@@ -143,7 +143,7 @@ Game.init = function (map) {
     let hero_x = map.hero_x;
     let hero_y = map.hero_y;
     this.hero = new Hero(map, hero_x, hero_y);
-    
+
     this.camera = new Camera(map, 192, 192, 128);
     this.camera.follow(this.hero);
 };
