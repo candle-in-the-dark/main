@@ -66,6 +66,7 @@ Hero.prototype.move = function (delta, dirx, diry) {
     this.y = Math.max(0, Math.min(this.y, maxY));
     var end = this.map.isAtEnd(this.x, this.y)
     if(end && !this.complete){
+    
       let endTime = Math.floor($('#timer').text().split(' ')[2]);
       submitScore(endTime);
       window.location.href = 'win.html';

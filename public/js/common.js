@@ -99,7 +99,7 @@ Game.tick = function (elapsed) {
     // compute delta time in seconds -- also cap it
     var delta = (elapsed - this._previousElapsed) / 1000.0;
     delta = Math.min(delta, 0.25); // maximum delta of 250 ms
-    $('#timer').text(`Elapsed Time: ${Math.floor(elapsed/1000)} seconds`);
+    $('#timer').text(`Elapsed Time: ${120-Math.floor(elapsed/1000)} seconds`);
     this._previousElapsed = elapsed;
 
     this.update(delta);
