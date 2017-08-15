@@ -4,13 +4,25 @@ body {
   background-repeat: no-repeat;
 }
 
-.table {
+h3 {
   border-radius: 10px;
   background-color: white;
   border-color: silver;
   border-width: 2px;
+  text-decoration: underline;
 }
 
-h3 {
-  text-decoration: underline;
+td {
+  font-size: 20px;
+}
+
+.data {
+  background-color: white;
+  border-radius: 10px;
+}
+
+#gameAgain {
+  background-color: purple;
+  color: white;
+  border-radius: 5px;
 }
