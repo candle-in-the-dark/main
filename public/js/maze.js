@@ -140,7 +140,10 @@ Game.init = function (map) {
         [Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, Keyboard.DOWN]);
     this.tileAtlas = Loader.getImage('tiles');
 
-    this.hero = new Hero(map, 96, 16);
+    let hero_x = map.hero_x;
+    let hero_y = map.hero_y;
+    this.hero = new Hero(map, hero_x, hero_y);
+    
     this.camera = new Camera(map, 192, 192, 128);
     this.camera.follow(this.hero);
 };
