@@ -122,6 +122,8 @@ window.onload = function () {
     var mapId = window.location.search.slice(7)
     $.getJSON('/maps/' + mapId, function(data){
       map.layers = data.map_data;
+      map.hero_x = data.hero_x;
+      map.hero_y = data.hero_y;
       Game.run(context, map);
     })
 };
