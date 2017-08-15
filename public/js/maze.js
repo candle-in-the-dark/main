@@ -220,7 +220,9 @@ const submitScore = function(endTime) {
   }
   $.ajax(grabScore)
     .then((result) => {
+      console.log(result)
       if (!result[0]) {
+        console.log('trying to post a score')
         const options = {
           contentType: 'application/json',
           data: JSON.stringify({ endTime, mapId }),
