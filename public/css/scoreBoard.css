@@ -1,0 +1,28 @@
+h3 {
+  border-radius: 10px;
+  background-color: white;
+  border-color: silver;
+  border-width: 2px;
+  text-decoration: underline;
+}
+
+td {
+  font-size: 20px;
+}
+
+.data {
+  background-color: white;
+  border-radius: 10px;
+}
+
+#gameAgain {
+  background-color: purple;
+  color: white;
+  border-radius: 5px;
+}
+
+body {
+  background-image: url('../res/scoreBoardBackdrop.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}

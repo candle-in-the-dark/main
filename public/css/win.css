@@ -8,3 +8,16 @@ h1 {
   background-color: white;
   border-radius: 5px;
 }
+
+#table {
+  background-color: white;
+  border-radius: 10px;
+}
+
+td {
+  font-size: 20px;
+}
+
+a {
+  margin: 10px;
+}

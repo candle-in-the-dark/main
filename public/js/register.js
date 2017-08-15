@@ -4,19 +4,31 @@ $('#submit').on('click', () => {
     const password = $('#password').val();
     const username = $('#username').val();
     const newUser = {'email':email, 'password':password, 'username':username};
-    const options = {
+    const register = {
       contentType: 'application/json',
       data: JSON.stringify(newUser),
       dataType: 'json',
       type: 'POST',
       url: '/users'
     };
-    $.ajax(options)
+    $.ajax(register)
       .then(() => {
-        Materialize.toast('Successfully logged in!', 1500);
+        Materialize.toast('Successfully registered!', 1500);
         setTimeout(() => {
           window.location.href = '../gamechoice.html';
         }, 1500);
+        const options = {
+          contentType: 'application/json',
+          data: JSON.stringify({ email, password }),
+          dataType: 'json',
+          type: 'POST',
+          url: '/token'
+        };
+        $.ajax(options)
+        .then(() => {})
+        .catch(($xhr) => {
+          Materialize.toast($xhr.responseText, 3000);
+        });
       })
       .catch(($xhr) => {
         Materialize.toast($xhr.responseText, 3000);
