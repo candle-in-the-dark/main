@@ -95,11 +95,13 @@ Game.tick = function (elapsed) {
 
     // clear previous frame
     this.ctx.clearRect(0, 0, 768, 768);
-
+    if (120-elapsed/1000 <= 0) {
+      window.location.href = 'ded.html';
+    }
     // compute delta time in seconds -- also cap it
     var delta = (elapsed - this._previousElapsed) / 1000.0;
     delta = Math.min(delta, 0.25); // maximum delta of 250 ms
-    $('#timer').text(`Elapsed Time: ${120-Math.floor(elapsed/1000)} seconds`);
+    $('#timer').text(`Time Remaining: ${120-Math.floor(elapsed/1000)} seconds`);
     this._previousElapsed = elapsed;
 
     this.update(delta);

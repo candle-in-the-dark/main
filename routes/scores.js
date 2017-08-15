@@ -18,8 +18,31 @@ const authorize = function(req, res, next) {
   });
 };
 
+router.get('/scores', (req, res, next) => {
+  knex('scores')
+    .then((result) => {
+      return res.send(result);
+    })
+    .catch((err) => {
+      return next(err);
+    })
+})
+
+router.patch('/scores', authorize, (req, res, next) => {
+  const userId = req.claim.userId;
+  const mapId = req.body.mapId;
+  const score = req.body.score;
+  knex('scores').where('map_id', mapId).andWhere('user_id', userId)
+    .update('score', score)
+    .then((result) => {
+      return res.send();
+    })
+    .catch((err) => {
+      return next(err);
+    })
+})
+
 router.post('/scores', authorize, (req, res, next) => {
-  console.log(req.claim)
   const toInsert = {'map_id':req.body.mapId, 'score':req.body.endTime, 'user_id': req.claim.userId}
   knex('scores').insert(toInsert, '*')
     .then((result) => {
