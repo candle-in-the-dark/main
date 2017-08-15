@@ -1,0 +1,16 @@
+body {
+  background-image: url('../res/scoreBoardBackdrop.jpeg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.table {
+  border-radius: 10px;
+  background-color: white;
+  border-color: silver;
+  border-width: 2px;
+}
+
+h3 {
+  text-decoration: underline;
+}

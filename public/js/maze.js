@@ -75,50 +75,6 @@ Hero.prototype.move = function (delta, dirx, diry) {
     }
 };
 
-//This will have to move to the dragon's riddle pageif we go that route (teehee!!!)
-const submitScore = function(endTime) {
-  const mapId = window.location.search.split('?')[1].split('=')[1];
-  const grabScore = {
-    contentType: 'application/json',
-    dataType: 'json',
-    type: 'GET',
-    url: `/scores/${mapId}`
-  }
-  $.ajax(grabScore)
-    .then((result) => {
-      if (!result[0]) {
-        const options = {
-          contentType: 'application/json',
-          data: JSON.stringify({ endTime, mapId }),
-          dataType: 'json',
-          type: 'POST',
-          url: '/scores'
-        };
-        $.ajax(options)
-          .then(() => {})
-          .catch(($xhr) => {
-            Materialize.toast($xhr.responseText, 3000);
-          });
-      } else {
-        if (result[0].score < endTime) {
-          const update = {
-            contentType: 'application/json',
-            data: JSON.stringify({ endTime, mapId }),
-            dataType: 'json',
-            type: 'PATCH',
-            url: '/scores'
-          };
-          $.ajax(update)
-            .then(() => {})
-            .catch((err) => {})
-        }
-      }
-    })
-    .catch((err) => {
-    })
-}
-
-
 Hero.prototype._collide = function (dirx, diry) {
     var row, col;
     // -1 in right and bottom is because image ranges from 0..63
@@ -243,3 +199,46 @@ Game.render = function () {
     this._drawLayer(1);
 
 };
+
+//This will have to move to the dragon's riddle pageif we go that route (teehee!!!)
+const submitScore = function(endTime) {
+  const mapId = window.location.search.split('?')[1].split('=')[1];
+  const grabScore = {
+    contentType: 'application/json',
+    dataType: 'json',
+    type: 'GET',
+    url: `/scores/${mapId}`
+  }
+  $.ajax(grabScore)
+    .then((result) => {
+      if (!result[0]) {
+        const options = {
+          contentType: 'application/json',
+          data: JSON.stringify({ endTime, mapId }),
+          dataType: 'json',
+          type: 'POST',
+          url: '/scores'
+        };
+        $.ajax(options)
+          .then(() => {})
+          .catch(($xhr) => {
+            Materialize.toast($xhr.responseText, 3000);
+          });
+      } else {
+        if (result[0].score < endTime) {
+          const update = {
+            contentType: 'application/json',
+            data: JSON.stringify({ endTime, mapId }),
+            dataType: 'json',
+            type: 'PATCH',
+            url: '/scores'
+          };
+          $.ajax(update)
+            .then(() => {})
+            .catch((err) => {})
+        }
+      }
+    })
+    .catch((err) => {
+    })
+}
