@@ -18,8 +18,8 @@ const authorize = function(req, res, next) {
   });
 };
 
-router.get('/scores', (req, res, next) => {
-  knex('scores')
+router.get('/scores', authorize, (req, res, next) => {
+  knex('scores').where('user_id', req.claim.userId).andWhere('map_id', req.body.mapId)
     .then((result) => {
       return res.send(result);
     })
@@ -32,6 +32,7 @@ router.patch('/scores', authorize, (req, res, next) => {
   const userId = req.claim.userId;
   const mapId = req.body.mapId;
   const score = req.body.score;
+  console.log(`Score:${score} and userId:${userId} and mapId${mapId}`)
   knex('scores').where('map_id', mapId).andWhere('user_id', userId)
     .update('score', score)
     .then((result) => {
@@ -44,6 +45,7 @@ router.patch('/scores', authorize, (req, res, next) => {
 
 router.post('/scores', authorize, (req, res, next) => {
   const toInsert = {'map_id':req.body.mapId, 'score':req.body.endTime, 'user_id': req.claim.userId}
+  console.log(toInsert)
   knex('scores').insert(toInsert, '*')
     .then((result) => {
       return res.send(result);
@@ -52,7 +54,5 @@ router.post('/scores', authorize, (req, res, next) => {
       return next(err);
     })
 })
-
-//write a patch route that updates high score if they beat teir prior high score
 
 module.exports = router;

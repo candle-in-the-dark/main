@@ -70,7 +70,7 @@ Hero.prototype.move = function (delta, dirx, diry) {
       let endTime = Math.floor($('#timer').text().split(' ')[2]);
       //send screen to dragon's riddle and commit score to storage to be inserted IFF dragon failsto kill hero
       submitScore(endTime);
-      window.location.href = 'win.html';
+      // window.location.href = 'win.html';
       this.complete = true;
     }
 };
