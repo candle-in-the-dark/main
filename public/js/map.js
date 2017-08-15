@@ -18,6 +18,10 @@ var map = {
             return res || isSolid;
         }.bind(this), false);
     },
+    heroStartPlace: function (x,y){
+      let isStart = tile ==7;
+
+    },
     isAtEnd: function (x, y) {
         let col = Math.floor(x / this.tsize);
         let row = Math.floor(y / this.tsize);
