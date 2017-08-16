@@ -16,10 +16,8 @@ function getRiddle(){
         return;
       }
       let choice = Math.floor(Math.random() * 10);
-
+      console.log(data.results);
       let question = data.results[choice].question
-      // let question = question.replace(`/&#039;/`, "'")
-      console.log(question);
       heading.text(question.replace(/&#039;/g, "'"));
       questionDiv.append(heading);
 
