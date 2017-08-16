@@ -71,10 +71,9 @@ Hero.prototype.move = function (delta, dirx, diry) {
 
       let endTime = Math.floor($('#timer').text().split(' ')[2]);
       let newInfo = {'lastMap':parseInt(window.location.search.split('?')[1].split('=')[1]), 'inQuest':info.inQuest, 'questions':info.questions};
+      newInfo.mapScore = endTime;
       if (newInfo.inQuest) {
-        newInfo.runningScore = info.runningScore + endTime;
-      } else {
-        newInfo.runningScore = endTime;
+        newInfo.questScore = info.questScore + endTime;
       }
       localStorage.setItem('info', JSON.stringify(newInfo));
       window.location.href = 'dragon.html';

@@ -12,7 +12,7 @@ $.ajax(getStatus)
       const playQuest = $('<a>').attr('class', 'waves-effect waves-light btn').attr('id', 'playQuest').text('Begin Epic Quest');
       $('#questMode').append(playQuest)
       $('#playQuest').on('click', () => {
-        localStorage.setItem('info', JSON.stringify({'runningScore': 0, 'inQuest': true, 'questions':[]}));
+        localStorage.setItem('info', JSON.stringify({'mapScore': 0, 'inQuest': true, 'questions':[], 'questScore':0}));
         window.location.href = `../maze.html?mapId=1`;
       })
     } else {
@@ -26,6 +26,6 @@ $.ajax(getStatus)
 $('#simplePlay').on('click', () => {
   let numbOfMaps = 3;
   let choice = Math.floor(Math.random() * numbOfMaps) + 1;
-  localStorage.setItem('info', JSON.stringify({'runningScore': 0, 'inQuest': false}));
+  localStorage.setItem('info', JSON.stringify({'mapScore': 0, 'inQuest': false, 'questScore':0}));
   window.location.href = `../maze.html?mapId=${choice}`;
 })

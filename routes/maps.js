@@ -19,7 +19,6 @@ router.get('/maps/:id', (req, res, next) => {
 });
 
 router.get('/maps', (req, res, next) => {
-  console.log("hello map!")
   knex('maps')
     .then((maps) => {
       res.send(maps)

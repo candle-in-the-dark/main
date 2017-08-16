@@ -50,8 +50,7 @@ function renderRiddle(data) {
 // sets the event handler and logic
   $('#answer').on('click', (event) => {
     if($(event.target).hasClass("correct")){
-      console.log("howdy:" + info.runningScore);
-      submitScore(info.runningScore)
+      submitScore(info.mapScore)
       .then(() => {
         localStorage.setItem('info', JSON.stringify(info))
         if (info.inQuest && loggedIn) {
