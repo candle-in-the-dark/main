@@ -15,7 +15,7 @@ $('#submit').on('click', () => {
       .then(() => {
         Materialize.toast('Successfully registered!', 1500);
         setTimeout(() => {
-          window.location.href = '../gamechoice.html';
+          // window.location.href = '../gamechoice.html';
         }, 1500);
         const options = {
           contentType: 'application/json',
@@ -25,7 +25,7 @@ $('#submit').on('click', () => {
           url: '/token'
         };
         $.ajax(options)
-        .then(() => {})
+        .then(() => {console.log(document.cookie)})
         .catch(($xhr) => {
           Materialize.toast($xhr.responseText, 3000);
         });

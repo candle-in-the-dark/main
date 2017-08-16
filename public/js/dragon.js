@@ -5,52 +5,55 @@ const info = JSON.parse(localStorage.getItem('info'));
 
 
 function getRiddle(){
-const url = 'https://opentdb.com/api.php?amount=10&category=20&difficulty=medium&type=multiple';
-const xhr = $.getJSON(url);
-xhr.done(function(data){
-  if (xhr.status !== 200){
-    return;
-  }
-  let choice = Math.floor(Math.random() * 10);
 
-  let question = data.results[choice].question
-  heading.text(question);
-  questionDiv.append(heading);
-
-  let rightAnswer = data.results[choice].correct_answer
-  let answers = data.results[choice].incorrect_answers;
-  answers.push(rightAnswer);
-  while (answers.length > 0){
-    let picker = Math.floor(Math.random() * answers.length)
-    let button = $("<button>");
-    button.text(answers[picker]);
-    if (answers[picker] === rightAnswer){
-      button.addClass("correct");
+  console.log(info);
+  const url = 'https://opentdb.com/api.php?amount=10&category=20&difficulty=medium&type=multiple';
+  const xhr = $.getJSON(url);
+  xhr.done(function(data){
+    if (xhr.status !== 200){
+      return;
     }
-    answer.append(button)
-    answers.splice(picker, 1)
-  }
+    let choice = Math.floor(Math.random() * 10);
 
-  $('#answer').on('click', (event) => {
-    if($(event.target).hasClass("correct")){
-      submitScore();
-      if (info.inQuest) {
-        if(lastMap === 3){
-          window.location.href = "win.html"
-        }
-        window.location.href = `maze.html?mapId=${info.lastMap+1}`
-      } else {
-        window.location.href = 'win.html';
+    let question = data.results[choice].question
+    heading.text(question);
+    questionDiv.append(heading);
+
+    let rightAnswer = data.results[choice].correct_answer
+    let answers = data.results[choice].incorrect_answers;
+    answers.push(rightAnswer);
+    while (answers.length > 0){
+      let picker = Math.floor(Math.random() * answers.length)
+      let button = $("<button>");
+      button.text(answers[picker]);
+      if (answers[picker] === rightAnswer){
+        button.addClass("correct");
       }
+      answer.append(button)
+      answers.splice(picker, 1)
     }
-    else{
-      window.location.href = "ded.html";
-    }
-  })
-});
+  // sets the event handler and logic
+    $('#answer').on('click', (event) => {
+      if($(event.target).hasClass("correct")){
+        submitScore();
+        // fix this logic!
+        if (info.inQuest) {
+          if(lastMap === 3){
+            window.location.href = "win.html"
+          }
+          window.location.href = `maze.html?mapId=${info.lastMap+1}`
+        } else {
+          window.location.href = 'win.html';
+        }
+      }
+      else{
+        window.location.href = "ded.html";
+      }
+    })
+  });
 };
 
-//This will have to move to the dragon's riddle pageif we go that route (teehee!!!)
+
 const submitScore = function(endTime) {
   const mapId = info.lastMap;
   const grabScore = {
@@ -93,6 +96,9 @@ const submitScore = function(endTime) {
     })
 }
 
+// const getPlayerInfo() =>{
+//
+// }
 
 
 
