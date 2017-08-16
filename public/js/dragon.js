@@ -58,10 +58,12 @@ function renderRiddle(data) {
         } else {
           window.location.href = `maze.html?mapId=${info.lastMap+1}`
         }
-      } else {
+      }
+      else {
         window.location.href = 'scoreboard.html';
       }
-    } else {
+    }
+    else {
         window.location.href = "ded.html";
     }
     })
@@ -69,6 +71,7 @@ function renderRiddle(data) {
 
 const submitScore = function(score) {
   const mapId = info.lastMap;
+  const quest = info.inQuest;
   const grabScore = {
     contentType: 'application/json',
     dataType: 'json',
@@ -80,7 +83,7 @@ const submitScore = function(score) {
       if (!result[0]) {
         const options = {
           contentType: 'application/json',
-          data: JSON.stringify({ score, mapId }),
+          data: JSON.stringify({ score, mapId, quest }),
           dataType: 'json',
           type: 'POST',
           url: '/scores'
@@ -94,7 +97,7 @@ const submitScore = function(score) {
         if (result[0].score < score) {
           const update = {
             contentType: 'application/json',
-            data: JSON.stringify({ score, mapId }),
+            data: JSON.stringify({ score, mapId, quest }),
             dataType: 'json',
             type: 'PATCH',
             url: '/scores'
