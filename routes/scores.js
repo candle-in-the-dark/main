@@ -65,7 +65,6 @@ router.patch('/scores', authorize, (req, res, next) => {
 })
 
 router.post('/scores', authorize, (req, res, next) => {
-  console.log("hi john")
   const toInsert = {'map_id':req.body.mapId, 'score':req.body.score, 'user_id': req.claim.userId, 'quest': req.body.quest}
   knex('scores').insert(toInsert, '*')
     .then((result) => {
