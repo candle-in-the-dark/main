@@ -1,7 +1,9 @@
-body {
-  background-image: url('../res/winBackground.jpeg');
-  background-repeat: no-repeat;
-  background-size: 100%;
+html {
+  background: url('../res/winBackground.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 h1 {
