@@ -59,7 +59,7 @@ function renderRiddle(data) {
           window.location.href = `maze.html?mapId=${info.lastMap+1}`
         }
       } else {
-        window.location.href = 'score.html';
+        window.location.href = 'scoreboard.html';
       }
     } else {
         window.location.href = "ded.html";
