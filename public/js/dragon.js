@@ -2,59 +2,65 @@ const questionDiv = $("#question");
 let heading = $("<h5>");
 const answer = $("#answer");
 const info = JSON.parse(localStorage.getItem('info'));
+let loggedIn;
 
 
 function getRiddle(){
+  getPlayerInfo()
+  .then((result) =>{
+    loggedIn = result;
+    console.log(loggedIn);
+    console.log(info);
 
-  console.log(info);
-  const url = 'https://opentdb.com/api.php?amount=10&category=20&difficulty=medium&type=multiple';
-  const xhr = $.getJSON(url);
-  xhr.done(function(data){
-    if (xhr.status !== 200){
-      return;
-    }
-    let choice = Math.floor(Math.random() * 10);
-
-    let question = data.results[choice].question
-    heading.text(question);
-    questionDiv.append(heading);
-
-    let rightAnswer = data.results[choice].correct_answer
-    let answers = data.results[choice].incorrect_answers;
-    answers.push(rightAnswer);
-    while (answers.length > 0){
-      let picker = Math.floor(Math.random() * answers.length)
-      let button = $("<button>");
-      button.text(answers[picker]);
-      if (answers[picker] === rightAnswer){
-        button.addClass("correct");
-      }
-      answer.append(button)
-      answers.splice(picker, 1)
-    }
-  // sets the event handler and logic
-    $('#answer').on('click', (event) => {
-      if($(event.target).hasClass("correct")){
-        submitScore();
-        // fix this logic!
-        if (info.inQuest) {
-          if(lastMap === 3){
-            window.location.href = "win.html"
-          }
-          window.location.href = `maze.html?mapId=${info.lastMap+1}`
-        } else {
-          window.location.href = 'win.html';
+      const url = 'https://opentdb.com/api.php?amount=10&category=20&difficulty=medium&type=multiple';
+      const xhr = $.getJSON(url);
+      xhr.done(function(data){
+        if (xhr.status !== 200){
+          return;
         }
-      }
-      else{
-        window.location.href = "ded.html";
-      }
+        let choice = Math.floor(Math.random() * 10);
+
+        let question = data.results[choice].question
+        heading.text(question);
+        questionDiv.append(heading);
+
+        let rightAnswer = data.results[choice].correct_answer
+        let answers = data.results[choice].incorrect_answers;
+        answers.push(rightAnswer);
+        while (answers.length > 0){
+          let picker = Math.floor(Math.random() * answers.length)
+          let button = $("<button>");
+          button.text(answers[picker]);
+          if (answers[picker] === rightAnswer){
+            button.addClass("correct");
+          }
+          answer.append(button)
+          answers.splice(picker, 1)
+        }
+      // sets the event handler and logic
+        $('#answer').on('click', (event) => {
+          if($(event.target).hasClass("correct")){
+            submitScore();
+            // fix this logic!
+            if (info.inQuest) {
+              if(lastMap === 3){
+                window.location.href = "win.html"
+              }
+              window.location.href = `maze.html?mapId=${info.lastMap+1}`
+            } else {
+              window.location.href = 'win.html';
+            }
+          }
+          else{
+            window.location.href = "ded.html";
+          }
+        })
+      })
     })
-  });
-};
+  .catch((err) =>{});
+}
 
-
-const submitScore = function(endTime) {
+const submitScore = function(score) {
   const mapId = info.lastMap;
   const grabScore = {
     contentType: 'application/json',
@@ -96,9 +102,15 @@ const submitScore = function(endTime) {
     })
 }
 
-// const getPlayerInfo() =>{
-//
-// }
+const getPlayerInfo = function(){
+  const logCheck = {
+    contentType: 'application/json',
+    dataType: 'json',
+    type: 'GET',
+    url: '/token'
+  };
+  return $.ajax(logCheck);
+};
 
 
 

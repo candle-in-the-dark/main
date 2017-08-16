@@ -15,7 +15,7 @@ $('#submit').on('click', () => {
       .then(() => {
         Materialize.toast('Successfully registered!', 1500);
         setTimeout(() => {
-          // window.location.href = '../gamechoice.html';
+          window.location.href = '../gamechoice.html';
         }, 1500);
         const clearToken = {
           contentType: 'application/json',
