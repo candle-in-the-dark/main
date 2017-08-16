@@ -32,7 +32,6 @@ router.get('/usernames/scores', (req, res, next) => {
   knex('scores').innerJoin('users', 'users.id', 'scores.user_id').select('username', 'score', 'map_id', 'quest')
 
     .then((result) => {
-      console.log(result)
       return res.send(result);
     })
     .catch((err) => {
@@ -54,8 +53,9 @@ router.patch('/scores', authorize, (req, res, next) => {
   const userId = req.claim.userId;
   const mapId = req.body.mapId;
   const score = req.body.score;
+  const quest = req.body.quest;
   knex('scores').where('map_id', mapId).andWhere('user_id', userId)
-    .update('score', score)
+    .update({'score': score, 'quest': quest})
     .then((result) => {
       return res.send();
     })
@@ -65,7 +65,8 @@ router.patch('/scores', authorize, (req, res, next) => {
 })
 
 router.post('/scores', authorize, (req, res, next) => {
-  const toInsert = {'map_id':req.body.mapId, 'score':req.body.score, 'user_id': req.claim.userId}
+  console.log("hi john")
+  const toInsert = {'map_id':req.body.mapId, 'score':req.body.score, 'user_id': req.claim.userId, 'quest': req.body.quest}
   knex('scores').insert(toInsert, '*')
     .then((result) => {
       return res.send(result);

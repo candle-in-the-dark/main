@@ -7,7 +7,6 @@ const options = {
 
 $.ajax(options)
   .then((result) => {
-    console.log(result)
     result.forEach((element) => {
       const row = $('<tr>');
       const mapId = $('<td>').text(element.map_id);

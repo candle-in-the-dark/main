@@ -50,21 +50,27 @@ function renderRiddle(data) {
 // sets the event handler and logic
   $('#answer').on('click', (event) => {
     if($(event.target).hasClass("correct")){
-      submitScore(info.runningScore);//Will have problems with questMode
-      localStorage.setItem('info', JSON.stringify(info))
-      if (info.inQuest && loggedIn) {
-        if (info.lastMap === 3){
-          window.location.href = "win.html"
-        } else {
-          window.location.href = `maze.html?mapId=${info.lastMap+1}`
+      console.log("howdy:" + info.runningScore);
+      submitScore(info.runningScore)
+      .then(() => {
+        localStorage.setItem('info', JSON.stringify(info))
+        if (info.inQuest && loggedIn) {
+          if (info.lastMap === 3){
+          // window.location.href = "win.html"
+          }
+          else {
+          // window.location.href = `maze.html?mapId=${info.lastMap+1}`
+          }
         }
+        else {
+        // window.location.href = 'scoreboard.html';
       }
-      else {
-        window.location.href = 'scoreboard.html';
-      }
+    })
+    .catch((err) => {})
     }
+
     else {
-        window.location.href = "ded.html";
+        // window.location.href = "ded.html";
     }
     })
 }
@@ -78,7 +84,7 @@ const submitScore = function(score) {
     type: 'GET',
     url: `/user/scores/${mapId}`
   }
-  $.ajax(grabScore)
+  return $.ajax(grabScore)
     .then((result) => {
       if (!result[0]) {
         const options = {
@@ -88,7 +94,7 @@ const submitScore = function(score) {
           type: 'POST',
           url: '/scores'
         };
-        $.ajax(options)
+      return $.ajax(options)
           .then(() => {})
           .catch(($xhr) => {
             Materialize.toast($xhr.responseText, 3000);
@@ -102,7 +108,7 @@ const submitScore = function(score) {
             type: 'PATCH',
             url: '/scores'
           };
-          $.ajax(update)
+          return $.ajax(update)
             .then(() => {})
             .catch((err) => {})
         }
