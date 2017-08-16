@@ -35,6 +35,9 @@ xhr.done(function(data){
     if($(event.target).hasClass("correct")){
       submitScore();
       if (info.inQuest) {
+        if(lastMap === 3){
+          window.location.href = "win.html"
+        }
         window.location.href = `maze.html?mapId=${info.lastMap+1}`
       } else {
         window.location.href = 'win.html';
