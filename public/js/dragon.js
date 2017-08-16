@@ -28,8 +28,18 @@ xhr.done(function(data){
     answer.append(button)
     answers.splice(picker, 1)
   }
+
+  $('#answer').on('click', (event) => {
+    if($(event.target).hasClass("correct")){
+      submitScore();
+    }
+    else{
+      window.location.href = "ded.html"
+    }
+  })
 });
 };
+
 
 
 
