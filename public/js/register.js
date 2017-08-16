@@ -17,6 +17,16 @@ $('#submit').on('click', () => {
         setTimeout(() => {
           // window.location.href = '../gamechoice.html';
         }, 1500);
+        const clearToken = {
+          contentType: 'application/json',
+          dataType: 'json',
+          type: 'DEL',
+          url: '/users'
+        }
+        $.ajax(clearToken)
+          .then(() => { })
+          .catch((err => { }));
+
         const options = {
           contentType: 'application/json',
           data: JSON.stringify({ email, password }),
