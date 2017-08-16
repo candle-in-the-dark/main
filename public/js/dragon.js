@@ -72,7 +72,7 @@ const submitScore = function(score) {
       if (!result[0]) {
         const options = {
           contentType: 'application/json',
-          data: JSON.stringify({ endTime, mapId }),
+          data: JSON.stringify({ score, mapId }),
           dataType: 'json',
           type: 'POST',
           url: '/scores'
@@ -83,10 +83,10 @@ const submitScore = function(score) {
             Materialize.toast($xhr.responseText, 3000);
           });
       } else {
-        if (result[0].score < endTime) {
+        if (result[0].score < score) {
           const update = {
             contentType: 'application/json',
-            data: JSON.stringify({ endTime, mapId }),
+            data: JSON.stringify({ score, mapId }),
             dataType: 'json',
             type: 'PATCH',
             url: '/scores'

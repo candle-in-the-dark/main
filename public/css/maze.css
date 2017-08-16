@@ -18,7 +18,12 @@ head, body {
     text-align: center;
 }
 
-#timer {
-  background-color: silver;
+#btn {
+  background-color: black;
+  color: white;
+  border-color: white;
   border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  margin-left: 15px;
 }

@@ -51,7 +51,7 @@ router.get('/usernames/scores/:id', authorize, (req, res, next) => {
 router.patch('/scores', authorize, (req, res, next) => {
   const userId = req.claim.userId;
   const mapId = req.body.mapId;
-  const score = req.body.endTime;
+  const score = req.body.score;
   knex('scores').where('map_id', mapId).andWhere('user_id', userId)
     .update('score', score)
     .then((result) => {
@@ -63,7 +63,7 @@ router.patch('/scores', authorize, (req, res, next) => {
 })
 
 router.post('/scores', authorize, (req, res, next) => {
-  const toInsert = {'map_id':req.body.mapId, 'score':req.body.endTime, 'user_id': req.claim.userId}
+  const toInsert = {'map_id':req.body.mapId, 'score':req.body.score, 'user_id': req.claim.userId}
   knex('scores').insert(toInsert, '*')
     .then((result) => {
       return res.send(result);
