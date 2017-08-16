@@ -21,8 +21,10 @@ td {
   border-radius: 5px;
 }
 
-body {
-  background-image: url('../res/scoreBoardBackdrop.jpeg');
+html {
+  background: url('../res/scoreBoardBackdrop.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-repeat: no-repeat;
 }
