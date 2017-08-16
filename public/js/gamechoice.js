@@ -6,6 +6,6 @@ $('#simplePlay').on('click', () => {
 })
 
 $('#playQuest').on('click', () => {
-  localStorage.setItem('info', JSON.stringify({'runningScore': 0, 'inQuest': true}));
+  localStorage.setItem('info', JSON.stringify({'runningScore': 0, 'inQuest': true, 'questions':[]}));
   window.location.href = `../maze.html?mapId=1`;
 })

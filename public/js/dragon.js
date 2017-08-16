@@ -15,48 +15,56 @@ function getRiddle(){
       if (xhr.status !== 200){
         return;
       }
-      let choice = Math.floor(Math.random() * 10);
-
-      let question = data.results[choice].question
-      // let question = question.replace(`/&#039;/`, "'")
-      console.log(question);
-      heading.text(question.replace(/&#039;/g, "'"));
-      questionDiv.append(heading);
-
-      let rightAnswer = data.results[choice].correct_answer
-      let answers = data.results[choice].incorrect_answers;
-      answers.push(rightAnswer);
-      while (answers.length > 0){
-        let picker = Math.floor(Math.random() * answers.length)
-        let button = $("<button>");
-        button.text(answers[picker]);
-        if (answers[picker] === rightAnswer){
-          button.addClass("correct");
-        }
-        answer.append(button)
-        answers.splice(picker, 1)
-      }
-    // sets the event handler and logic
-      $('#answer').on('click', (event) => {
-        if($(event.target).hasClass("correct")){
-          submitScore(info.runningScore);
-          if (info.inQuest && loggedIn) {
-            if (lastMap === 3){
-              window.location.href = "win.html"
-            }
-            window.location.href = `maze.html?mapId=${info.lastMap+1}`
-            }
-            else {
-              window.location.href = 'score.html';
-            }
-          }
-          else {
-            window.location.href = "ded.html";
-          }
-        })
-      })
+      renderRiddle(data);
     })
   .catch((err) => {});
+  })
+}
+
+function renderRiddle(data) {
+  let choice = Math.floor(Math.random() * 10);
+  if (info.inQuest) {
+    while (info.questions.includes(choice)) {
+      choice = Math.floor(Math.random() * 10);
+    }
+    info.questions.push(choice);
+  }
+  let question = data.results[choice].question
+
+  heading.text(question.replace(/&#039;/g, "'"));
+  questionDiv.append(heading);
+
+  let rightAnswer = data.results[choice].correct_answer
+  let answers = data.results[choice].incorrect_answers;
+  answers.push(rightAnswer);
+  while (answers.length > 0){
+    let picker = Math.floor(Math.random() * answers.length)
+    let button = $("<button>");
+    button.text(answers[picker]);
+    if (answers[picker] === rightAnswer){
+      button.addClass("correct");
+    }
+    answer.append(button)
+    answers.splice(picker, 1)
+  }
+// sets the event handler and logic
+  $('#answer').on('click', (event) => {
+    if($(event.target).hasClass("correct")){
+      submitScore(info.runningScore);//Will have problems with questMode
+      localStorage.setItem('info', JSON.stringify(info))
+      if (info.inQuest && loggedIn) {
+        if (info.lastMap === 3){
+          window.location.href = "win.html"
+        } else {
+          window.location.href = `maze.html?mapId=${info.lastMap+1}`
+        }
+      } else {
+        window.location.href = 'score.html';
+      }
+    } else {
+        window.location.href = "ded.html";
+    }
+    })
 }
 
 const submitScore = function(score) {
