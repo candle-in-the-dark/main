@@ -12,8 +12,8 @@ $.ajax(options)
       const mapId = $('<td>').text(element.map_id);
       const username = $('<td>').text(element.username);
       const score = $('<td>').text(element.score);
-      // const quest =
-      $('#singlePlay').append(row.append(mapId).append(username).append(score));
+      const quest = $('<td>').text(element.quest);
+      $('#scores').append(row.append(mapId).append(username).append(score));
     })
   })
   .catch((err) => { });
