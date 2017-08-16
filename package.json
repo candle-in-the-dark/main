@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "knex": "knex"
+    "knex": "knex",
+    "heroku-postbuild": "knex migrate:latest",
+    "nf": "nf start",
+    "nodemon": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -30,7 +33,11 @@
     "paths": "^0.1.1",
     "pg": "^7.1.0"
   },
+  "engines": {
+    "node": "8.2.1"
+  },
   "devDependencies": {
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "foreman": "^2.0.0"
   }
 }
