@@ -1,4 +1,14 @@
 $('#login').on('click', () => {
+  login();
+  });
+
+$(document).keypress(function(e) {
+  if(e.which == 13) {
+    login();
+  }
+});
+
+function login() {
   if (validForm()) {
     const email = $('#email').val();
     const password = $('#password').val();
@@ -19,8 +29,9 @@ $('#login').on('click', () => {
       .catch(($xhr) => {
         Materialize.toast($xhr.responseText, 3000);
       });
-    }
-  });
+  }
+}
+
 
 function validForm() {
   if (!$('#email').hasClass('valid')) {
