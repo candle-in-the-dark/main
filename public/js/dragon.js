@@ -15,7 +15,9 @@ function getRiddle(){
       if (xhr.status !== 200){
         return;
       }
-      renderRiddle(data);
+      setTimeout(function() {
+        renderRiddle(data)
+      }, 1500);
     })
   .catch((err) => {});
   })
@@ -126,8 +128,6 @@ const getPlayerInfo = function(){
   };
   return $.ajax(logCheck);
 };
-
-
 
 window.onload = function() {
   getRiddle();
