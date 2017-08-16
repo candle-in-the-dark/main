@@ -33,24 +33,25 @@ xhr.done(function(data){
 
   $('#answer').on('click', (event) => {
     if($(event.target).hasClass("correct")){
-      submitScore();
+      submitScore(info.runningScore);
       if (info.inQuest) {
         if(lastMap === 3){
-          window.location.href = "win.html"
+          // window.location.href = "win.html"
         }
-        window.location.href = `maze.html?mapId=${info.lastMap+1}`
+        // window.location.href = `maze.html?mapId=${info.lastMap+1}`
       } else {
-        window.location.href = 'win.html';
+        // window.location.href = 'win.html';
       }
     }
     else{
-      window.location.href = "ded.html";
+      // window.location.href = "ded.html";
     }
   })
 });
 };
 
-const submitScore = function(endTime) {
+const submitScore = function(score) {
+  console.log('submitting')
   const mapId = info.lastMap;
   const grabScore = {
     contentType: 'application/json',
@@ -63,27 +64,33 @@ const submitScore = function(endTime) {
       if (!result[0]) {
         const options = {
           contentType: 'application/json',
-          data: JSON.stringify({ endTime, mapId }),
+          data: JSON.stringify({ score, mapId }),
           dataType: 'json',
           type: 'POST',
           url: '/scores'
         };
         $.ajax(options)
-          .then(() => {})
+          .then(() => {
+
+            console.log('just posted to scores')
+          })
           .catch(($xhr) => {
             Materialize.toast($xhr.responseText, 3000);
           });
       } else {
-        if (result[0].score < endTime) {
+        if (result[0].score < score) {
           const update = {
             contentType: 'application/json',
-            data: JSON.stringify({ endTime, mapId }),
+            data: JSON.stringify({ score, mapId }),
             dataType: 'json',
             type: 'PATCH',
             url: '/scores'
           };
           $.ajax(update)
-            .then(() => {})
+            .then(() => {
+
+            console.log('just patched scores')
+          })
             .catch((err) => {})
         }
       }

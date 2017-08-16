@@ -21,7 +21,7 @@ $('#submit').on('click', () => {
           contentType: 'application/json',
           dataType: 'json',
           type: 'DEL',
-          url: '/users'
+          url: '/token'
         }
         $.ajax(clearToken)
           .then(() => { })
