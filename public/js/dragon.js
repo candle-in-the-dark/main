@@ -56,21 +56,21 @@ function renderRiddle(data) {
         localStorage.setItem('info', JSON.stringify(info))
         if (info.inQuest && loggedIn) {
           if (info.lastMap === 3){
-          // window.location.href = "win.html"
+          window.location.href = "win.html"
           }
           else {
-          // window.location.href = `maze.html?mapId=${info.lastMap+1}`
+          window.location.href = `maze.html?mapId=${info.lastMap+1}`
           }
         }
         else {
-        // window.location.href = 'scoreboard.html';
+        window.location.href = 'scoreboard.html';
       }
     })
     .catch((err) => {})
     }
 
     else {
-        // window.location.href = "ded.html";
+        window.location.href = "ded.html";
     }
     })
 }
