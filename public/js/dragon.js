@@ -1,6 +1,8 @@
 const questionDiv = $("#question");
 let heading = $("<h5>");
 const answer = $("#answer");
+const info = JSON.parse(localStorage.getItem('info'));
+
 
 function getRiddle(){
 const url = 'https://opentdb.com/api.php?amount=10&category=20&difficulty=medium&type=multiple';
@@ -32,9 +34,14 @@ xhr.done(function(data){
   $('#answer').on('click', (event) => {
     if($(event.target).hasClass("correct")){
       submitScore();
+      if (info.inQuest) {
+        window.location.href = `maze.html?mapId=${info.lastMap+1}`
+      } else {
+        window.location.href = 'win.html';
+      }
     }
     else{
-      window.location.href = "ded.html"
+      window.location.href = "ded.html";
     }
   })
 });
@@ -42,7 +49,7 @@ xhr.done(function(data){
 
 //This will have to move to the dragon's riddle pageif we go that route (teehee!!!)
 const submitScore = function(endTime) {
-  const mapId = window.location.search.split('?')[1].split('=')[1];
+  const mapId = info.lastMap;
   const grabScore = {
     contentType: 'application/json',
     dataType: 'json',
@@ -51,9 +58,7 @@ const submitScore = function(endTime) {
   }
   $.ajax(grabScore)
     .then((result) => {
-      console.log(result)
       if (!result[0]) {
-        console.log('trying to post a score')
         const options = {
           contentType: 'application/json',
           data: JSON.stringify({ endTime, mapId }),

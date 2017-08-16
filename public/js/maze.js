@@ -70,7 +70,7 @@ Hero.prototype.move = function (delta, dirx, diry) {
     if(end && !this.complete){
 
       let endTime = Math.floor($('#timer').text().split(' ')[2]);
-      let newInfo = {'lastMap':window.location.search.split('?')[1].split('=')[1], 'inQuest':info.inQuest};
+      let newInfo = {'lastMap':parseInt(window.location.search.split('?')[1].split('=')[1]), 'inQuest':info.inQuest};
       if (newInfo.inQuest) {
         newInfo.runningScore = info.runningScore + endTime;
       } else {
@@ -78,8 +78,7 @@ Hero.prototype.move = function (delta, dirx, diry) {
       }
       localStorage.setItem('info', JSON.stringify(newInfo));
       //send screen to dragon's riddle and commit score to storage to be inserted IFF dragon failsto kill hero
-      submitScore(endTime);
-      window.location.href = 'win.html';
+      window.location.href = 'dragon.html';
       this.complete = true;
     }
 };
@@ -208,46 +207,3 @@ Game.render = function () {
     this._drawLayer(1);
 
 };
-
-//This will have to move to the dragon's riddle pageif we go that route (teehee!!!)
-const submitScore = function(endTime) {
-  const mapId = window.location.search.split('?')[1].split('=')[1];
-  const grabScore = {
-    contentType: 'application/json',
-    dataType: 'json',
-    type: 'GET',
-    url: `/user/scores/${mapId}`
-  }
-  $.ajax(grabScore)
-    .then((result) => {
-      if (!result[0]) {
-        const options = {
-          contentType: 'application/json',
-          data: JSON.stringify({ endTime, mapId }),
-          dataType: 'json',
-          type: 'POST',
-          url: '/scores'
-        };
-        $.ajax(options)
-          .then(() => {})
-          .catch(($xhr) => {
-            Materialize.toast($xhr.responseText, 3000);
-          });
-      } else {
-        if (result[0].score < endTime) {
-          const update = {
-            contentType: 'application/json',
-            data: JSON.stringify({ endTime, mapId }),
-            dataType: 'json',
-            type: 'PATCH',
-            url: '/scores'
-          };
-          $.ajax(update)
-            .then(() => {})
-            .catch((err) => {})
-        }
-      }
-    })
-    .catch((err) => {
-    })
-}

@@ -1,3 +1,10 @@
 button {
-  color: red 
+  margin: 5px;
+  color: red;
+  border-radius: 5px;
+
+}
+
+.correct {
+  background-color: blue;
 }
