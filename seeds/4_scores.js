@@ -1,19 +1,23 @@
 
 const scores = [
   {
-    'score': 10,
-    'map_id': 1,
-    'user_id': 2
+    "score": 10,
+    "map_id": 1,
+    "user_id": 2,
+    "quest": true
+
   },
   {
-    'score': 110,
-    'map_id': 2,
-    'user_id': 2
+    "score": 110,
+    "map_id": 2,
+    "user_id": 2,
+    "quest": false
   },
   {
-    'score': 120,
-    'map_id': 2,
-    'user_id': 1
+    "score": 120,
+    "map_id": 2,
+    "user_id": 1,
+    "quest": true
   }
 ];
 

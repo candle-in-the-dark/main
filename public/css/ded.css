@@ -1,9 +1,10 @@
-body {
-  background-image: url('../res/lossScreen.jpeg');
-  background-repeat: no-repeat;
-  background-size: 100%;
+html { 
+  background: url('../res/lossScreen.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
-
 h1 {
   background-color: white;
   border-radius: 5px;
