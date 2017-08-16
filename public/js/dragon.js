@@ -47,7 +47,6 @@ xhr.done(function(data){
 });
 };
 
-//This will have to move to the dragon's riddle pageif we go that route (teehee!!!)
 const submitScore = function(endTime) {
   const mapId = info.lastMap;
   const grabScore = {
@@ -89,9 +88,6 @@ const submitScore = function(endTime) {
     .catch((err) => {
     })
 }
-
-
-
 
 window.onload = function() {
   getRiddle();

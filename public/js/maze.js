@@ -77,7 +77,6 @@ Hero.prototype.move = function (delta, dirx, diry) {
         newInfo.runningScore = endTime;
       }
       localStorage.setItem('info', JSON.stringify(newInfo));
-      //send screen to dragon's riddle and commit score to storage to be inserted IFF dragon failsto kill hero
       window.location.href = 'dragon.html';
       this.complete = true;
     }
