@@ -13,7 +13,7 @@ $.ajax(questGet)
   })
   .then((data) => {
     const username = data.username;
-    $('#user').text(`Congratulations ${username}!!`)
-    $('#questScore').text (`You had ${score} seconds remaining when you completed the Quest!`);
+    $('#user').text(`Player: ${username}`)
+    $('#questScore').text (`Time Remaining: ${score}`);
   })
   .catch((err) => console.log(err));
