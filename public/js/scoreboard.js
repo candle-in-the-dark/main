@@ -13,9 +13,11 @@ $.ajax(getMaps)
   if (info.inQuest) {
     renderScores('quest');
     $('#title').text('Scores for the Quest')
-  } else {
+  } else if (info.lastMap !== '0'){
     renderScores(parseInt(info.lastMap))
     $('#title').text(`Scores for Map ${info.lastMap}`);
+  } else {
+    $('#title').text('Click a button to display scores for that map!')
   }
 })
 .catch((err) => {})
