@@ -11,6 +11,14 @@ body {
   text-shadow: rgba(0, 0, 0, 1) 0px 0px 5px;
 }
 
-.btnpad {
-  margin: 10px;
+.button {
+  background-color: lightgrey;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-color: white;
+  border-width: 2px;
+  color: white;
 }
