@@ -23,3 +23,18 @@ td {
 a {
   margin: 10px;
 }
+
+.button {
+  cursor: pointer;
+  padding: 8px;
+  background-color: #c95cc7;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-color: white;
+  border-width: 1px;
+  color: black;
+  border-style: solid;
+}

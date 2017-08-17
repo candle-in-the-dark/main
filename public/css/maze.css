@@ -1,5 +1,5 @@
 canvas {
-    background: #000;
+  background: #000;
 }
 head, body {
   background: #000;
@@ -9,21 +9,11 @@ head, body {
 }
 
 .main-wrapper {
-    width: 768px;
-    padding-left: 1em;
-    padding-right: 1em;
-    margin: 0 auto;
+  width: 768px;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin: 0 auto;
 }
 .center{
-    text-align: center;
-}
-
-#btn {
-  background-color: black;
-  color: white;
-  border-color: white;
-  border-radius: 5px;
-  border-width: 2px;
-  border-style: solid;
-  margin-left: 15px;
+  text-align: center;
 }

@@ -2,7 +2,7 @@ h3 {
   border-radius: 10px;
   background-color: white;
   border-color: silver;
-  border-width: 2px;
+  border-width: 1px;
   text-decoration: underline;
 }
 
@@ -27,4 +27,19 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.button {
+  cursor: pointer;
+  padding: 8px;
+  background-color: purple;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-color: white;
+  border-width: 1px;
+  color: white;
+  border-style: solid;
 }

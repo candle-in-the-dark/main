@@ -9,15 +9,15 @@ $.ajax(getStatus)
     if (result) {
       $('#questTitle').text('Play Quest Mode')
       //we'relogged in do work!!!!
-      const playQuest = $('<a>').attr('class', 'waves-effect waves-light btn').attr('id', 'playQuest').text('Begin Epic Quest');
+      const playQuest = $('<a>').attr('class', 'button').attr('id', 'playQuest').text('Begin Epic Quest');
       $('#questMode').append(playQuest)
       $('#playQuest').on('click', () => {
         localStorage.setItem('info', JSON.stringify({'mapScore': 0, 'inQuest': true, 'questions':[], 'questScore':0}));
         window.location.href = `../maze.html?mapId=1`;
       })
     } else {
-      const register = $('<a>').attr('class', 'waves-effect waves-light btn').attr('href', 'register.html').text('Register');
-      const login = $('<a>').attr('class', 'waves-effect waves-light btn').attr('href', 'login.html').text('Log In');
+      const register = $('<a>').attr('class', 'button').attr('href', 'register.html').text('Register');
+      const login = $('<a>').attr('class', 'button').attr('href', 'login.html').text('Log In');
       $('#questMode').append(register).append(login);
     }
   })
