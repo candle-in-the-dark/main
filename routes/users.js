@@ -34,4 +34,14 @@ router.post('/users', (req, res, next) => {
     })
 })
 
+router.get('/users/:id', (req, res, next) => {
+  knex('users')
+    .where('id', req.params.id)
+    .first()
+    .then((user) => {
+      res.send(user)
+    })
+    .catch((err) => next(err))
+})
+
 module.exports = router;

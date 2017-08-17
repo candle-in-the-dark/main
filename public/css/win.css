@@ -11,12 +11,12 @@ h1 {
   border-radius: 5px;
 }
 
-#table {
+table {
   background-color: white;
   border-radius: 10px;
 }
 
-td {
+th {
   font-size: 20px;
 }
 
@@ -27,14 +27,21 @@ a {
 .button {
   cursor: pointer;
   padding: 8px;
-  background-color: #c95cc7;
+  background-image: -webkit-linear-gradient(top, #A5B8DA, #7089B3);
+  background-image: -moz-linear-gradient(top, #A5B8DA, #7089B3);
+  background-image: -ms-linear-gradient(top, #A5B8DA, #7089B3);
+  background-image: -o-linear-gradient(top, #A5B8DA, #7089B3);
   border-radius: 5px;
-  margin-left: 10px;
+  margin-left: 25px;
   margin-top: 10px;
-  margin-right: 10px;
+  margin-right: 25px;
   margin-bottom: 10px;
   border-color: white;
   border-width: 1px;
   color: black;
   border-style: solid;
+}
+
+.footer {
+  background-color: black;
 }

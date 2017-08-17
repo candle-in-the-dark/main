@@ -1,19 +1,19 @@
 const info = JSON.parse(localStorage.getItem('info'));
 const score = info.questScore;
-
-const options = {
+const questGet = {
   contentType: 'application/json',
   dataType: 'json',
   type: 'GET',
-  url: `/usernames/scores/quest/win`
+  url: `/token/quest`
 }
 
-$.ajax(options)
+$.ajax(questGet)
   .then((result) => {
-    result.forEach((element) => {
-      const username = element.username;
-      $('#user').text(`Congratulations ${username}!!`)
-      $('#questScore').text (`You had ${score} seconds remaining when you completed the Quest!`);
-    })
+    return $.ajax({contentType: 'application/json', dataType: 'json', type: 'GET', url: `users/${result.userId}`})
   })
-  .catch((err) => { });
+  .then((data) => {
+    const username = data.username;
+    $('#user').text(`Congratulations ${username}!!`)
+    $('#questScore').text (`You had ${score} seconds remaining when you completed the Quest!`);
+  })
+  .catch((err) => console.log(err));
