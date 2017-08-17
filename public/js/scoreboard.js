@@ -47,6 +47,9 @@ function renderScores(mapId) {
   $.ajax(options)
   .then((result) => {
     if (mapId === 3) {
+      if () {
+
+      }
       result = result.filter(function(element) {
         if (element.quest === false) {
           return element;
