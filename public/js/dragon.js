@@ -51,34 +51,38 @@ function renderRiddle(data) {
   }
 // sets the event handler and logic
   $('#answer').on('click', (event) => {
-    if($(event.target).hasClass("correct")){
-      submitScore(info.mapScore)
-      .then(() => {
-        localStorage.setItem('info', JSON.stringify(info))
-        if (info.inQuest && loggedIn) {
-          if (info.lastMap === 3){
-          window.location.href = "win.html"
-          }
-          else {
-          window.location.href = `maze.html?mapId=${info.lastMap+1}`
-          }
+    if($(event.target).hasClass("correct")) {
+        if (info.lastMap === 3 && info.inQuest) {
+          console.log('finishing quest!')
+          submitScoreQuest()
+          .then(() => {
+            window.location.href = 'win.html';
+          }).catch((err) => {})
+        } else {
+          submitScore(info.mapScore)
+          .then(() => {
+            if (info.inQuest) {
+              info.questScore += info.mapScore;
+            }
+            console.log('this is about to be submitted to storage')
+            console.log(info)
+            localStorage.setItem('info', JSON.stringify(info))
+            if (info.inQuest && loggedIn) {
+              window.location.href = `maze.html?mapId=${info.lastMap+1}`
+            } else {
+              window.location.href = 'scoreboard.html';
+            }
+            })
+          .catch((err) => {});
         }
-        else {
-        window.location.href = 'scoreboard.html';
-      }
-    })
-    .catch((err) => {})
+    } else {
+      window.location.href = "ded.html";
     }
-
-    else {
-        window.location.href = "ded.html";
-    }
-    })
+  })
 }
 
 const submitScore = function(score) {
   const mapId = info.lastMap;
-  const quest = info.inQuest;
   const grabScore = {
     contentType: 'application/json',
     dataType: 'json',
@@ -90,7 +94,7 @@ const submitScore = function(score) {
       if (!result[0]) {
         const options = {
           contentType: 'application/json',
-          data: JSON.stringify({ score, mapId, quest }),
+          data: JSON.stringify({ score, mapId }),
           dataType: 'json',
           type: 'POST',
           url: '/scores'
@@ -104,7 +108,7 @@ const submitScore = function(score) {
         if (result[0].score < score) {
           const update = {
             contentType: 'application/json',
-            data: JSON.stringify({ score, mapId, quest }),
+            data: JSON.stringify({ score, mapId }),
             dataType: 'json',
             type: 'PATCH',
             url: '/scores'
@@ -117,6 +121,23 @@ const submitScore = function(score) {
     })
     .catch((err) => {
     })
+}
+
+function submitScoreQuest() {
+  const score = {
+    'map_id':3,
+    'score':info.questScore
+  }
+  const questScore = {
+    contentType: 'application/json',
+    dataType: 'json',
+    data: JSON.stringify(score),
+    type: 'POST',
+    url: '/scores/quest'
+  }
+  return $.ajax(questScore)
+    .then((results) => {})
+    .catch((err) => {})
 }
 
 const getPlayerInfo = function(){

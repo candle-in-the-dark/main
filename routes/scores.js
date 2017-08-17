@@ -39,8 +39,9 @@ router.get('/usernames/scores', (req, res, next) => {
     })
 })
 
-router.get('/usernames/scores/:id', authorize,(req, res, next) => {
-  knex('scores').where('map_id', req.params.id).innerJoin('users', 'users.id', 'scores.user_id').select('username', 'score')
+router.get('/usernames/scores/quest', (req, res, next) => {
+  console.log('in quest route')
+  knex('scores').where('map_id', 3).andWhere('quest', true).innerJoin('users', 'users.id', 'scores.user_id').select('username', 'score')
     .then((result) => {
       return res.send(result);
     })
@@ -49,8 +50,8 @@ router.get('/usernames/scores/:id', authorize,(req, res, next) => {
     })
 })
 
-router.get('/usernames/scores/quest', (req, res, next) => {
-  knex('scores').where('map_id', 3).andWhere('quest', true).innerJoin('users', 'users.id', 'scores.user_id').select('username', 'score')
+router.get('/usernames/scores/:mapId', authorize,(req, res, next) => {
+  knex('scores').where('map_id', req.params.mapId).innerJoin('users', 'users.id', 'scores.user_id').select('username', 'score', 'quest')
     .then((result) => {
       return res.send(result);
     })
@@ -63,9 +64,8 @@ router.patch('/scores', authorize, (req, res, next) => {
   const userId = req.claim.userId;
   const mapId = req.body.mapId;
   const score = req.body.score;
-  const quest = req.body.quest;
   knex('scores').where('map_id', mapId).andWhere('user_id', userId)
-    .update({'score': score, 'quest': quest})
+    .update({'score': score, 'quest': false})
     .then((result) => {
       return res.send();
     })
@@ -74,8 +74,19 @@ router.patch('/scores', authorize, (req, res, next) => {
     })
 })
 
+router.post('/scores/quest', authorize, (req, res, next) => {
+  const toInsert = {'map_id':3, 'score':req.body.score, 'user_id':req.claim.userId, 'quest':true}
+  knex('scores').insert(toInsert, '*')
+    .then((result) => {
+      return res.send(result);
+    })
+    .catch((err) => {
+      return next(err)
+    })
+})
+
 router.post('/scores', authorize, (req, res, next) => {
-  const toInsert = {'map_id':req.body.mapId, 'score':req.body.score, 'user_id': req.claim.userId, 'quest': req.body.quest}
+  const toInsert = {'map_id':req.body.mapId, 'score':req.body.score, 'user_id': req.claim.userId, 'quest': false}
   knex('scores').insert(toInsert, '*')
     .then((result) => {
       return res.send(result);
