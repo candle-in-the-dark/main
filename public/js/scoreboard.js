@@ -1,3 +1,5 @@
+const info = JSON.parse(localStorage.getItem('info'));
+
 const getMaps = {
     contentType: 'application/json',
     dataType: 'json',
@@ -8,6 +10,13 @@ $.ajax(getMaps)
 .then((result) => {
   renderButtons(result);
   renderQuestButton();
+  if (info.inQuest) {
+    renderScores('quest');
+    $('#title').text('Scores for the Quest')
+  } else {
+    renderScores(parseInt(info.lastMap))
+    $('#title').text(`Scores for Map ${info.lastMap}`);
+  }
 })
 .catch((err) => {})
 
@@ -47,9 +56,6 @@ function renderScores(mapId) {
   $.ajax(options)
   .then((result) => {
     if (mapId === 3) {
-      if () {
-
-      }
       result = result.filter(function(element) {
         if (element.quest === false) {
           return element;
@@ -65,7 +71,6 @@ function renderScores(mapId) {
       const row = $('<tr>');
       const username = $('<td>').text(element.username);
       const score = $('<td>').text(element.score);
-
       $('#scores').append(row.append(username).append(score));
     })
   })

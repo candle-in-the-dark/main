@@ -8,7 +8,6 @@ $.ajax(getStatus)
   .then((result) => {
     if (result) {
       $('#questTitle').text('Play Quest Mode')
-      //we'relogged in do work!!!!
       const playQuest = $('<a>').attr('class', 'button').attr('id', 'playQuest').text('Begin Epic Quest');
       $('#questMode').append(playQuest)
       $('#playQuest').on('click', () => {
