@@ -4,3 +4,10 @@ $('#guestPlay').on('click', () => {
   localStorage.setItem('info', JSON.stringify({'mapScore': 0, 'inQuest': false, 'questScore':0}));
   window.location.href = `../maze.html?mapId=${choice}`;
 })
+
+localStorage.setIte('info', JSON.stringify(info))
+
+const info = {
+  inQuest: false,
+  lastMap: -1
+}

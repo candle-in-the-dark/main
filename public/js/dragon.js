@@ -60,9 +60,6 @@ function renderRiddle(data) {
         } else {
           submitScore(info.mapScore)
           .then(() => {
-            if (info.inQuest) {
-              info.questScore += info.mapScore;
-            }
             localStorage.setItem('info', JSON.stringify(info))
             if (info.inQuest && loggedIn) {
               window.location.href = `maze.html?mapId=${info.lastMap+1}`

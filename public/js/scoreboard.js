@@ -10,7 +10,7 @@ $.ajax(getMaps)
 .then((result) => {
   renderButtons(result);
   renderQuestButton();
-  if (info.inQuest) {
+  if (info.inQuest === true || info.lastMap < 1) {
     renderScores('quest');
     $('#title').text('Scores for the Quest')
   } else {
