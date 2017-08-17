@@ -11,12 +11,12 @@ h1 {
   border-radius: 5px;
 }
 
-#table {
+table {
   background-color: white;
   border-radius: 10px;
 }
 
-td {
+th {
   font-size: 20px;
 }
 
@@ -40,4 +40,8 @@ a {
   border-width: 1px;
   color: black;
   border-style: solid;
+}
+
+.footer {
+  background-color: black;
 }

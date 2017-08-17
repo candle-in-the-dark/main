@@ -1,6 +1,5 @@
 const info = JSON.parse(localStorage.getItem('info'));
 const score = info.questScore;
-
 const questGet = {
   contentType: 'application/json',
   dataType: 'json',
