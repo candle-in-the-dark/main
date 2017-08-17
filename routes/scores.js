@@ -49,6 +49,16 @@ router.get('/usernames/scores/:id', authorize,(req, res, next) => {
     })
 })
 
+router.get('/usernames/scores/quest', (req, res, next) => {
+  knex('scores').where('map_id', 3).andWhere('quest', true).innerJoin('users', 'users.id', 'scores.user_id').select('username', 'score')
+    .then((result) => {
+      return res.send(result);
+    })
+    .catch((err) => {
+      return next(err);
+    })
+})
+
 router.patch('/scores', authorize, (req, res, next) => {
   const userId = req.claim.userId;
   const mapId = req.body.mapId;
