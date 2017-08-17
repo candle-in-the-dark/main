@@ -7,6 +7,10 @@ const options = {
 
 $.ajax(options)
   .then((result) => {
+    result.sort(function (a, b){
+      return b.score - a.score;
+    });
+    console.log(result)
     result.forEach((element) => {
       const row = $('<tr>');
       const mapId = $('<td>').text(element.map_id);
