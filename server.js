@@ -13,6 +13,7 @@ const cookie = require('cookie-parser');
 const app = express()
 app.use(bodyParser.json());
 app.use(cookie());
+app.use(morgan('dev'))
 // enable static 'public' directory for serving html/css/js files to client
 app.use(express.static(path.join('public')));
 

@@ -39,8 +39,9 @@ router.get('/usernames/scores', (req, res, next) => {
     })
 })
 
-router.get('/usernames/scores/:id', authorize,(req, res, next) => {
-  knex('scores').where('map_id', req.params.id).innerJoin('users', 'users.id', 'scores.user_id').select('username', 'score')
+router.get('/usernames/scores/quest', (req, res, next) => {
+  console.log('in quest route')
+  knex('scores').where('map_id', 3).andWhere('quest', true).innerJoin('users', 'users.id', 'scores.user_id').select('username', 'score')
     .then((result) => {
       return res.send(result);
     })
@@ -49,8 +50,8 @@ router.get('/usernames/scores/:id', authorize,(req, res, next) => {
     })
 })
 
-router.get('/usernames/scores/quest', (req, res, next) => {
-  knex('scores').where('map_id', 3).andWhere('quest', true).innerJoin('users', 'users.id', 'scores.user_id').select('username', 'score')
+router.get('/usernames/scores/:mapId', authorize,(req, res, next) => {
+  knex('scores').where('map_id', req.params.mapId).innerJoin('users', 'users.id', 'scores.user_id').select('username', 'score')
     .then((result) => {
       return res.send(result);
     })
