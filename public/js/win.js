@@ -1,21 +1,19 @@
 const info = JSON.parse(localStorage.getItem('info'));
-const map = info.lastMap;
-const score = $('<td>').text(info.questScore);
+const score = info.questScore;
 
 const options = {
   contentType: 'application/json',
   dataType: 'json',
   type: 'GET',
-  url: `/usernames/scores/${map}`
+  url: `/usernames/scores/quest/win`
 }
 
 $.ajax(options)
   .then((result) => {
     result.forEach((element) => {
-      const row = $('<tr>');
       const username = element.username;
-      $('#title').text(`Quest Score for ${username}`);
-      $('#records').append(row.append(score));
+      $('#user').text(`Congratulations ${username}!!`)
+      $('#questScore').text (`You had ${score} seconds remaining when you completed the Quest!`);
     })
   })
   .catch((err) => { });
