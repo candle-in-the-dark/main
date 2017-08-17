@@ -52,30 +52,33 @@ function renderRiddle(data) {
 // sets the event handler and logic
   $('#answer').on('click', (event) => {
     if($(event.target).hasClass("correct")) {
-      .then(() => {
         if (info.lastMap === 3 && info.inQuest) {
           console.log('finishing quest!')
-          submitScoreQuest();
-          window.location.href = 'win.html';
+          submitScoreQuest()
+          .then(() => {
+            window.location.href = 'win.html';
+          }).catch((err) => {})
         } else {
           submitScore(info.mapScore)
-          console.log('this is about to be submitted to storage')
-          console.log(info)
-          localStorage.setItem('info', JSON.stringify(info))
-          if (info.inQuest && loggedIn) {
-            window.location.href = `maze.html?mapId=${info.lastMap+1}`
-          } else {
-            window.location.href = 'scoreboard.html';
-          }
+          .then(() => {
+            if (info.inQuest) {
+              info.questScore += info.mapScore;
+            }
+            console.log('this is about to be submitted to storage')
+            console.log(info)
+            localStorage.setItem('info', JSON.stringify(info))
+            if (info.inQuest && loggedIn) {
+              window.location.href = `maze.html?mapId=${info.lastMap+1}`
+            } else {
+              window.location.href = 'scoreboard.html';
+            }
+            })
+          .catch((err) => {});
         }
-    })
-    .catch((err) => {})
+    } else {
+      window.location.href = "ded.html";
     }
-
-    else {
-        window.location.href = "ded.html";
-    }
-    })
+  })
 }
 
 const submitScore = function(score) {
@@ -123,16 +126,16 @@ const submitScore = function(score) {
 function submitScoreQuest() {
   const score = {
     'map_id':3,
-    'score':info.questScore;
+    'score':info.questScore
   }
   const questScore = {
     contentType: 'application/json',
     dataType: 'json',
-    data: JSON.stringify(score)
+    data: JSON.stringify(score),
     type: 'POST',
     url: '/scores/quest'
   }
-  $.ajax(questScore)
+  return $.ajax(questScore)
     .then((results) => {})
     .catch((err) => {})
 }
