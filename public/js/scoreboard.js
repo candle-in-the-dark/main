@@ -7,8 +7,18 @@ const getMaps = {
 $.ajax(getMaps)
 .then((result) => {
   renderButtons(result);
+  renderQuestButton();
 })
 .catch((err) => {})
+
+function renderQuestButton() {
+  const button = $('<a>').addClass('button').attr('id', 'quest').text('Quest')
+  button.on('click', (() => {
+    $('#title').text('Scores for the Quest')
+    renderScores('quest');
+  }))
+  $('#buttons').append(button)
+}
 
 function renderButtons(mapArray) {
   mapArray.forEach(function(element) {
