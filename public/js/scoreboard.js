@@ -25,7 +25,7 @@ function renderButtons(mapArray) {
     const id = parseInt(element.id)
     const button = $('<a>').addClass('button').attr('id', id).text(`Map ${id}`)
     button.on('click', (() => {
-      $('#title').text(`Scores for map ${id}`);
+      $('#title').text(`Scores for Map ${id}`);
       renderScores(id);
     }));
     $('#buttons').append(button)
@@ -46,6 +46,13 @@ function renderScores(mapId) {
   }
   $.ajax(options)
   .then((result) => {
+    if (mapId === 3) {
+      result = result.filter(function(element) {
+        if (element.quest === false) {
+          return element;
+        }
+      })
+    }
     result.sort(function (a, b){
       return b.score - a.score;
     });

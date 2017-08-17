@@ -51,7 +51,7 @@ router.get('/usernames/scores/quest', (req, res, next) => {
 })
 
 router.get('/usernames/scores/:mapId', authorize,(req, res, next) => {
-  knex('scores').where('map_id', req.params.mapId).innerJoin('users', 'users.id', 'scores.user_id').select('username', 'score')
+  knex('scores').where('map_id', req.params.mapId).innerJoin('users', 'users.id', 'scores.user_id').select('username', 'score', 'quest')
     .then((result) => {
       return res.send(result);
     })
