@@ -1,5 +1,8 @@
 body {
   background-color: black;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 * {
@@ -24,4 +27,9 @@ body {
   border-width: 1px;
   color: white;
   border-style: solid;
+}
+
+
+main {
+  flex: 1 0 auto;
 }

@@ -8,24 +8,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
     <link rel="stylesheet" href="./css/style.css" type="text/css">
-    <link rel='stylesheet' href='./css/maze.css' type='text/css'>
+    <link rel="stylesheet" href="./css/maze.css" type="text/css">
     <script src="./js/map.js"></script>
     <script src="./js/common.js"></script>
     <script src="./js/maze.js"></script>
 </head>
 <body>
+  <main>
+    <header class="main-header row">
+      <div class="col l12">
+        <h4 class="center" id="timer"></h4>
+      </div>
+      <div class="row center">
+        <p class="center">Use arrow keys to move</p>
+        <a href="index.html" class="button" id="btn">Quit</a>
+      </div>
+    </header>
 
-  <header class="main-header row">
-    <div class='col l12'>
-      <h2 class='center' id='timer'></h2>
-      <p class='center'>Use arrow keys to move<a href='index.html' class='button' id='btn'>Quit</a></p>
-
+    <div class="main-wrapper container">
+      <canvas id="demo" width="768" height="768"></canvas>
     </div>
-  </header>
 
-  <div class="main-wrapper container">
-    <canvas id="demo" width="768" height="768"></canvas>
-  </div>
-
+    <footer class="footer container">
+    </footer>
+  </main>
 </body>
 </html>
