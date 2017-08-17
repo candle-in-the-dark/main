@@ -5,9 +5,9 @@ $('#guestPlay').on('click', () => {
   window.location.href = `../maze.html?mapId=${choice}`;
 })
 
-localStorage.setIte('info', JSON.stringify(info))
-
 const info = {
   inQuest: false,
   lastMap: -1
 }
+
+localStorage.setItem('info', JSON.stringify(info))
