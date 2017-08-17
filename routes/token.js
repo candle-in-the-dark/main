@@ -41,6 +41,12 @@ router.post('/token', (req, res, next) => {
     })
 });
 
+router.get('/token/quest', (req, res) => {
+  jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
+    res.send({userId: payload.userId});
+  });
+});
+
 router.get('/token', (req, res) => {
   jwt.verify(req.cookies.token, process.env.JWT_KEY, (err, payload) => {
     if (err) {
