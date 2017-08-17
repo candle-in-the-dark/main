@@ -53,7 +53,6 @@ function renderRiddle(data) {
   $('#answer').on('click', (event) => {
     if($(event.target).hasClass("correct")) {
         if (info.lastMap === 3 && info.inQuest) {
-          console.log('finishing quest!')
           submitScoreQuest()
           .then(() => {
             window.location.href = 'win.html';
@@ -64,8 +63,6 @@ function renderRiddle(data) {
             if (info.inQuest) {
               info.questScore += info.mapScore;
             }
-            console.log('this is about to be submitted to storage')
-            console.log(info)
             localStorage.setItem('info', JSON.stringify(info))
             if (info.inQuest && loggedIn) {
               window.location.href = `maze.html?mapId=${info.lastMap+1}`
