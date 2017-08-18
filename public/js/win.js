@@ -47,7 +47,6 @@ $("#logout").on("click", () => {
   $.ajax(logOut)
       .then(() => {
         logOutButton.addClass("hidden")
-        // window.location.href = '../index.html'
       })
       .catch((err) => console.log(err))
 });
