@@ -106,9 +106,9 @@ $.ajax(logCheck)
 .then((check) =>{
   if (check === false) {
     logOutButton.addClass("hidden")
-    guestPlay.text('Play Random Map')
   }
   else{
+    guestPlay.text('Play Random Map')
     logOutButton.removeClass("hidden")
     login.addClass("hidden")
     register.addClass("hidden")
@@ -120,6 +120,7 @@ $.ajax(logCheck)
 $("#logout").on("click", () => {
   $.ajax(logOut)
     .then(() => {
+      guestPlay.text("Guest Play")
       logOutButton.addClass("hidden")
       login.removeClass("hidden")
       register.removeClass("hidden")
