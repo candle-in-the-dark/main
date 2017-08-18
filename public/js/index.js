@@ -39,6 +39,7 @@ $.ajax(logCheck)
     logOutButton.removeClass("hidden")
     login.addClass("hidden")
     register.addClass("hidden")
+    $('#guestPlay').text('Play Random Maze')
   }
 })
 .catch((err) => console.log(err))
