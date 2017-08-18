@@ -85,8 +85,8 @@ Hero.prototype._collide = function (dirx, diry) {
     var row, col;
     // -1 in right and bottom is because image ranges from 0..63
     // and not up to 64
-    const collideHeight = this.height - 16;
-    const collideWidth = this.width - 16;
+    const collideHeight = this.height - 30;
+    const collideWidth = this.width - 30;
     var left = this.x - collideWidth / 2;
     var right = this.x + collideWidth/ 2 - 1;
     var top = this.y - collideHeight / 2;

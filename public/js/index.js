@@ -33,7 +33,6 @@ localStorage.setItem("info", JSON.stringify(info))
 $.ajax(logCheck)
 .then((check) => {
   if (check === false) {
-    console.log("doggie");
     logOutButton.addClass("hidden")
   }
   else{
