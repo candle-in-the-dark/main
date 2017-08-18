@@ -108,11 +108,11 @@ $.ajax(logCheck)
     logOutButton.addClass("hidden")
   }
   else{
-    guestPlay.text('Play Random Map')
+    guestPlay.text('Play Again')
     logOutButton.removeClass("hidden")
     login.addClass("hidden")
     register.addClass("hidden")
-    
+
   }
 })
 .catch((err) => console.log(err))
@@ -129,8 +129,12 @@ $("#logout").on("click", () => {
 })
 
 $('#guestPlay').on('click', () => {
-  let numbOfMaps = 3;
-  let choice = Math.floor(Math.random() * numbOfMaps) + 1;
-  localStorage.setItem('info', JSON.stringify({'mapScore': 0, 'inQuest': false, 'questScore':0}));
-  window.location.href = `../maze.html?mapId=${choice}`;
+  if (register.hasClass('hidden')) {
+    window.location.href = '../gamechoice.html'
+  } else {
+    let numbOfMaps = 3;
+    let choice = Math.floor(Math.random() * numbOfMaps) + 1;
+    localStorage.setItem('info', JSON.stringify({'mapScore': 0, 'inQuest': false, 'questScore':0}));
+    window.location.href = `../maze.html?mapId=${choice}`;
+  }
 })
