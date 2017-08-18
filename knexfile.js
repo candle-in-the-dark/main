@@ -17,5 +17,8 @@ module.exports = {
     seeds: {
       directory: './prod_seed/'
     }
+    // migrations: {
+    //   directory: './prod_migrations/'
+    // }
   }
 };
