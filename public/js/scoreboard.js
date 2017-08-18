@@ -112,7 +112,7 @@ $.ajax(logCheck)
     logOutButton.removeClass("hidden")
     login.addClass("hidden")
     register.addClass("hidden")
-
+    
   }
 })
 .catch((err) => console.log(err))
