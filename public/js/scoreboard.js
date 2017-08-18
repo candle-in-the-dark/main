@@ -52,6 +52,7 @@ function renderScores(mapId) {
   } else {
     options.url = `/usernames/scores/${mapId}`
   }
+
   $.ajax(options)
   .then((result) => {
     if (mapId === 3) {
@@ -92,9 +93,8 @@ const login = $("#login")
 const register = $("#register")
 const guestPlay = $("#guestPlay")
 
-
 $.ajax(logCheck)
-.then((check) => {
+.then((check) =>{
   if (check === false) {
     logOutButton.addClass("hidden")
   }
@@ -113,7 +113,7 @@ $("#logout").on("click", () => {
       login.removeClass("hidden")
       register.removeClass("hidden")
     })
-    .catch((err) => console.log(typeof err))
+    .catch((err) => console.log(err))
 })
 
 $('#guestPlay').on('click', () => {
