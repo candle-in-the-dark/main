@@ -65,7 +65,16 @@ function renderScores(mapId) {
     result.sort(function (a, b){
       return b.score - a.score;
     });
-    //put this down here to avoid a flicker effect between asynchronous calls
+    if (result[0].quest !== false) {
+      for (let i = 1; i < result.length; i++) {
+        for (let j = 0; j < i; j++) {
+          if (result[i].username === result[j].username) {
+            result.splice(i, 1)
+          }
+        }
+      }
+    }
+    //put this down here to avoid a flicker effect waiting for an asynchronous call to conclude
     $('#scores').empty();
     result.forEach((element) => {
       const row = $('<tr>');
