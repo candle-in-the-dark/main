@@ -55,6 +55,7 @@ $("#logout").on("click", () => {
       logOutButton.addClass("hidden")
       login.removeClass("hidden")
       register.removeClass("hidden")
+      $('#guestPlay').text('Guest Play')
     })
     .catch((err) => console.log(typeof err))
 })
