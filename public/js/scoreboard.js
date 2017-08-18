@@ -97,11 +97,13 @@ $.ajax(logCheck)
 .then((check) =>{
   if (check === false) {
     logOutButton.addClass("hidden")
+    guestPlay.text('Play Random Map')
   }
   else{
     logOutButton.removeClass("hidden")
     login.addClass("hidden")
     register.addClass("hidden")
+
   }
 })
 .catch((err) => console.log(err))
