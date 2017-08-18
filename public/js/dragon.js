@@ -58,16 +58,15 @@ function renderRiddle(data) {
             window.location.href = 'win.html';
           }).catch((err) => {})
         } else {
-          submitScore(info.mapScore)
-          .then(() => {
             localStorage.setItem('info', JSON.stringify(info))
-            if (info.inQuest && loggedIn) {
+            if (info.inQuest) {
               window.location.href = `maze.html?mapId=${info.lastMap+1}`
             } else {
+              submitScore(info.mapScore)
+              .then(() => {})
+              .catch((err) => {});
               window.location.href = 'scoreboard.html';
             }
-            })
-          .catch((err) => {});
         }
     } else {
       window.location.href = "ded.html";

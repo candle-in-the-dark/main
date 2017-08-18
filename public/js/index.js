@@ -20,10 +20,15 @@ const info = {
 
 
 $("#guestPlay").on("click", () => {
-  let numbOfMaps = 3;
-  let choice = Math.floor(Math.random() * numbOfMaps) + 1;
-  localStorage.setItem("info", JSON.stringify({"mapScore": 0, "inQuest": false, "questScore":0}));
-  window.location.href = `../maze.html?mapId=${choice}`;
+  if ($('#guestPlay').text() === 'Guest Play') {
+    let numbOfMaps = 3;
+    let choice = Math.floor(Math.random() * numbOfMaps) + 1;
+    localStorage.setItem("info", JSON.stringify({"mapScore": 0, "inQuest": false, "questScore":0}));
+    window.location.href = `../maze.html?mapId=${choice}`;
+  } else {
+    window.location.href = '../gamechoice.html'
+  }
+
 })
 
 
@@ -39,7 +44,7 @@ $.ajax(logCheck)
     logOutButton.removeClass("hidden")
     login.addClass("hidden")
     register.addClass("hidden")
-    $('#guestPlay').text('Play Random Maze')
+    $('#guestPlay').text('Play The Game')
   }
 })
 .catch((err) => console.log(err))
