@@ -31,9 +31,7 @@ $("#guestPlay").on("click", () => {
 
 })
 
-
 localStorage.setItem("info", JSON.stringify(info))
-
 
 $.ajax(logCheck)
 .then((check) => {
